@@ -7,11 +7,9 @@ setTime();
 })
 
 
-
+//sets a timer of 120s, and stops when it reaches 0s
 function setTime() {
-    
-    var timeLeft = 2;
-    
+    var timeLeft = 120;
     time.textContent = timeLeft;
 
     var timeInterval = setInterval(function () {

@@ -14,10 +14,19 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 .content{
     min-width: 20rem;
+    max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
+    flex-wrap: wrap;
+    
+}
+.content .input-box{
+    display: none;
+}
+.question{
+    word-wrap: break-word;
 }
