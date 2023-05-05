@@ -18,6 +18,6 @@ main{
 }
 .content{
     min-width: 20rem;
-    min-height: 15rem;
+    min-height: 10rem;
     border: 3px solid red;
 }
