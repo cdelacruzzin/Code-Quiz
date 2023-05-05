@@ -1,9 +1,11 @@
 var start = document.querySelector('.start');
 var time = document.querySelector('#timer');
+var radioDisplay = document.querySelector('.input-box');
 
 
 start.addEventListener('click', function () {
 setTime();
+radioDisplay.setAttribute("style", "display: block");
 })
 
 
