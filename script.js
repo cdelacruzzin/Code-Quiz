@@ -5,7 +5,7 @@ var radioDisplay = document.querySelector('.input-box');
 
 start.addEventListener('click', function () {
 setTime();
-radioDisplay.setAttribute("style", "display: block");
+radioDisplay.setAttribute("style", "display: flex");
 })
 
 

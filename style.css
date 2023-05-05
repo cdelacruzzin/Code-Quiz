@@ -21,11 +21,17 @@ main{
     max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
-    flex-wrap: wrap;
+
     
 }
 .content .input-box{
     display: none;
+    flex-direction: column;
+}
+
+#next{
+    justify-self: center;
+    align-self: center  ;
 }
 .question{
     word-wrap: break-word;
