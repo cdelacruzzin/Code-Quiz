@@ -7,10 +7,16 @@ var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
 
 
+var questionNum = 0;
+var questionArray = [question1, question2, question3];
+
 start.addEventListener('click', function () {
 setTime();
 radioDisplay.setAttribute("style", "display: block");
-question1();
+
+navigate(questionNum);
+
+
 
 });
 
@@ -29,31 +35,51 @@ function setTime() {
     }, 1000);
 }
 
-next.addEventListener('click', function(event){
+
+
+
+function next(){
+    next.addEventListener('click', function(event){
     event.preventDefault();
+
 })
-
-var questionObj = {
-    question1: question1(),
-
-
 }
 
+
+function navigate(questionNum){
+    console.log(questionNum);
+    if(questionNum < questionArray.length){
+        questionArray[0]();
+        questionNum++;
+    }
+    console.log(questionNum);
+}
+
+
+//when function is called, questions and answers change
 function question1(){
     labels[0].textContent = "hello";
     labels[1].textContent = "my";
     labels[2].textContent = "name";
     labels[3].textContent = "carlos";
-
-
-
-
-
-
     //stores the value of the checked radio button to variable
-    var selectedAns = document.querySelector('input[name="a"]:checked').value;
-    return selectedAns;
+
 }
 
+function question2(){
+    labels[0].textContent = "a";
+    labels[1].textContent = "s";
+    labels[2].textContent = "d";
+    labels[3].textContent = "f";
+}
+function question3(){
+    labels[0].textContent = "q";
+    labels[1].textContent = "w";
+    labels[2].textContent = "e";
+    labels[3].textContent = "r";
+}
+function question4(){
+    
+}
 
 
