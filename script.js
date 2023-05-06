@@ -57,6 +57,7 @@ next.addEventListener('click', function (event) {
             for (const answered of radios) {
                 if (answered.checked) {
                     answer = answered.value;
+                    userAnsArray.push(answer);
                     break;
                 }
             }
@@ -80,6 +81,7 @@ next.addEventListener('click', function (event) {
     }
     console.log(questionNum, "array: ", questionArray.length);
     console.log("answer for q", questionNum, " : ", answer);
+    console.log(userAnsArray);
 });
 
 
