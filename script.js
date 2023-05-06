@@ -37,24 +37,18 @@ function setTime() {
 
 
 
-
-function nextQ(){
-    console.log(questionNum);
     next.addEventListener('click', function(event){
     event.preventDefault();
-    questionNum++;
-    navigate(questionNum);
+    console.log(questionNum);
+
+    if(questionNum < questionArray.length - 1){
+        questionArray[questionNum]();
+            questionNum++;
+    }
+
     
 })
-}
 
-
-function navigate(questionNum){
-    if(questionNum < questionArray.length){
-        questionArray[0]();
-    }
-    
-}
 
 
 //when function is called, questions and answers change
@@ -65,7 +59,6 @@ function question1(){
     labels[3].textContent = "carlos";
     //stores the value of the checked radio button to variable
 
-    nextQ();
 
 }
 
@@ -74,15 +67,21 @@ function question2(){
     labels[1].textContent = "s";
     labels[2].textContent = "d";
     labels[3].textContent = "f";
+
+    
 }
 function question3(){
     labels[0].textContent = "q";
     labels[1].textContent = "w";
     labels[2].textContent = "e";
     labels[3].textContent = "r";
+
 }
 function question4(){
-    
+    labels[0].textContent = "3";
+    labels[1].textContent = "f";
+    labels[2].textContent = "g";
+    labels[3].textContent = "d";
 }
 
 
