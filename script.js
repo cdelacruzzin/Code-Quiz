@@ -15,23 +15,22 @@ var labels = document.querySelectorAll('label');
 var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
 
-var userAnsArray = [];
+var userAnsArray = {
+    userAns: []
+};
 
 var answerKey = {
     ans1: 4,
     ans2: 2,
     ans3: 3,
     ans4: 1
-}
+};
 
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
-    
-  
-
 });
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
@@ -121,11 +120,7 @@ function gameOver(){
     console.log("ansKey: ",answerKey);
 
 
-    if(userAnsArray == answerKey){
-        console.log("true");
-    }else {
-        console.log("false");
-    }
+    
   
 }
 
