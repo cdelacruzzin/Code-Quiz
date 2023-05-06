@@ -7,21 +7,21 @@ var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
 
 //a counter to keep track of which question we are on
-var questionNum = 1;
+var questionNum = 0;
 var questionArray = [question1, question2, question3, question4];
 
 start.addEventListener('click', function () {
-setTime();
-radioDisplay.setAttribute("style", "display: block");
+    setTime();
+    radioDisplay.setAttribute("style", "display: block");
 
-question1();
+    question1();
 
 });
 
 //sets a timer of 120s, and stops when it reaches 0s
 function setTime() {
     var timeLeft = 120;
-    time.textContent = timeLeft;``
+    time.textContent = timeLeft; ``
 
     var timeInterval = setInterval(function () {
         timeLeft--;
@@ -34,52 +34,67 @@ function setTime() {
 }
 
 
-
-    next.addEventListener('click', function(event){
+// && radios[1] &&radios[2] &&radios[3]
+next.addEventListener('click', function (event) {
     event.preventDefault();
-    console.log(questionNum);
+   
 
-    if(questionNum < questionArray.length - 1){
+
+    if((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)){
+
+    } else {
+           if (questionNum < questionArray.length) {
         questionArray[questionNum]();
-            questionNum++;
+        
+    } else {
+        console.log("end");
+    }
     }
 
-    
-})
+
+    console.log(questionNum, "array: ", questionArray.length);
+}
+
+)
 
 
 
 //when function is called, questions and answers change
-function question1(){
+function question1() {
+    questionNum++;
     labels[0].textContent = "hello";
     labels[1].textContent = "my";
     labels[2].textContent = "name";
     labels[3].textContent = "carlos";
     //stores the value of the checked radio button to variable
 
-
+    
 }
 
-function question2(){
+function question2() {
+    questionNum++;
     labels[0].textContent = "a";
     labels[1].textContent = "s";
     labels[2].textContent = "d";
     labels[3].textContent = "f";
-
     
+
 }
-function question3(){
+function question3() {
+    questionNum++;
     labels[0].textContent = "q";
     labels[1].textContent = "w";
     labels[2].textContent = "e";
     labels[3].textContent = "r";
-
+    
 }
-function question4(){
+function question4() {
+    questionNum++;
     labels[0].textContent = "3";
     labels[1].textContent = "f";
     labels[2].textContent = "g";
     labels[3].textContent = "d";
+    
 }
 
 
