@@ -1,3 +1,7 @@
+
+
+
+
 var start = document.querySelector('.start');
 var time = document.querySelector('#timer');
 var radioDisplay = document.querySelector('.input-box');
@@ -9,7 +13,7 @@ var labels = document.querySelectorAll('label');
 
 //a counter to keep track of which question we are on
 var questionNum = 0;
-var questionArray = [question1, question2, question3, question4];
+var questionArray = [question2, question3, question4, gameOver];
 var answerKey = [4,2,3,1];
 var userAnsArray = [];
 
@@ -18,7 +22,7 @@ var userAnsArray = [];
 start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
-    questionArray[questionNum]();
+    
   
 
 });
@@ -53,10 +57,10 @@ next.addEventListener('click', function (event) {
   
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
-        if (questionNum < questionArray.length) {
+        if (questionNum < questionArray.length ) {
 
             
-
+            questionArray[questionNum]();
             var answer;
             for (const answered of radios) {
                 if (answered.checked) {
@@ -75,7 +79,7 @@ next.addEventListener('click', function (event) {
 
         } else {
             console.log("end");
-            saveUserAns();
+            userScore();
         }
     }
 
@@ -84,12 +88,7 @@ next.addEventListener('click', function (event) {
 
 
 //when function is called, questions and answers change
-function question1() {
-    labels[0].textContent = "hello";
-    labels[1].textContent = "my";
-    labels[2].textContent = "name";
-    labels[3].textContent = "carlos";
-}
+
 function question2() {
     labels[0].textContent = "a";
     labels[1].textContent = "s";
@@ -109,14 +108,43 @@ function question4() {
     labels[3].textContent = "d";
 }
 
-  //creates an object, and stores the answer in the object.
-    //stores the object in storage and JSON.stringify to convert it to a string
-function saveUserAns(){
-    var userAns = {
-        ans: userAnsArray
-    };
-
-    console.log("object: ",userAns.ans);
-    localStorage.setItem('userAns', JSON.stringify(userAns));
+function gameOver(){
+window.alert('game over!');
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //creates an object, and stores the answer in the object.
+    //stores the object in storage and JSON.stringify to convert it to a string
+    function userScore(score, time){
+        this.score = score;
+        this.time = time;
+        this.msg = function(){
+
+        }
+
+    }
+
+
+//     function userScore(){
+//     var userAns = {
+//         ans: userAnsArray
+//     };
+
+//     console.log("object: ",userAns.ans);
+//     localStorage.setItem('userAns', JSON.stringify(userAns));
+// }
