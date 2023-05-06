@@ -15,9 +15,9 @@ var userAnsArray = [];
 
 start.addEventListener('click', function () {
     setTime();
-    radioDisplay.setAttribute("style", "display: block");
-
-    question1();
+    radioDisplay.setAttribute("style", "display: flex");
+    questionArray[questionNum]();
+  
 
 });
 
@@ -42,6 +42,7 @@ console.log(this)
 // && radios[1] &&radios[2] &&radios[3]
 next.addEventListener('click', function (event) {
     event.preventDefault();
+    
 
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
     //the corresponding function will be called.
@@ -52,7 +53,7 @@ next.addEventListener('click', function (event) {
     } else {
         if (questionNum < questionArray.length) {
 
-            questionArray[questionNum]();
+            
 
             var answer;
             for (const answered of radios) {
@@ -64,22 +65,24 @@ next.addEventListener('click', function (event) {
             }
 
 
+            console.log(questionNum, "array: ", questionArray.length);
+            console.log("answer for q", questionNum, " : ", answer);
+            console.log(userAnsArray);
 
             questionNum++;
+
         } else {
             console.log("end");
+            saveUserAns();
         }
     }
-    console.log(questionNum, "array: ", questionArray.length);
-    console.log("answer for q", questionNum, " : ", answer);
-    console.log(userAnsArray);
+
 });
 
 
 
 //when function is called, questions and answers change
 function question1() {
-
     labels[0].textContent = "hello";
     labels[1].textContent = "my";
     labels[2].textContent = "name";
