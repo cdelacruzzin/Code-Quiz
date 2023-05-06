@@ -37,6 +37,7 @@ start.addEventListener('click', function () {
 });
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
+//stores the time left after the time interval ends to the user score object
 function setTime() {
     var timeLeft = 120;
     time.textContent = timeLeft; 
@@ -47,6 +48,7 @@ function setTime() {
 
         if (timeLeft === 0 || gameOver) {
             clearInterval(timeInterval);
+        userScore.userTimeFinish = timeLeft;
         }
     }, 1000);
 }
@@ -118,7 +120,6 @@ function question4() {
 function gameOver(){
 
     console.log("end");
-    console.log(time.textContent);
     console.log("userAns: ",userAnsObj.userAns);
     console.log("ansKey: ",answerKey);
 
@@ -134,8 +135,11 @@ function gameOver(){
             
     }
     console.log('number of correct: ',userScore.userCorrectAnsNum);
+    console.log('time finished: ', userScore.userTimeFinish);
   
 }
+
+
 
 var userScore = {
     userCorrectAnsNum: 0,
@@ -155,17 +159,14 @@ var userScore = {
 
 
 
-
-
   //creates an object, and stores the answer in the object.
     //stores the object in storage and JSON.stringify to convert it to a string
 
     
 
 
-    function userScore(){
 
 
 //     console.log("object: ",userAns.ans);
 //     localStorage.setItem('userAns', JSON.stringify(userAns));
-}
+
