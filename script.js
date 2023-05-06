@@ -59,8 +59,8 @@ next.addEventListener('click', function (event) {
     } else {
         if (questionNum < questionArray.length ) {
 
-            
-            questionArray[questionNum]();
+
+
             var answer;
             for (const answered of radios) {
                 if (answered.checked) {
@@ -70,15 +70,18 @@ next.addEventListener('click', function (event) {
                 }
             }
 
-
             console.log(questionNum, "array: ", questionArray.length);
             console.log("answer for q", questionNum, " : ", answer);
             console.log(userAnsArray);
 
+            questionArray[questionNum]();
+
+
+
             questionNum++;
 
         } else {
-            console.log("end");
+            
             userScore();
         }
     }
@@ -109,6 +112,7 @@ function question4() {
 }
 
 function gameOver(){
+    console.log("end");
 window.alert('game over!');
 }
 
