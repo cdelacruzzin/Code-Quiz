@@ -119,7 +119,15 @@ function gameOver(){
     console.log("userAns: ",userAnsObj.userAns);
     console.log("ansKey: ",answerKey);
 
+    var counter = 0;
 
+    for(let property in answerKey){
+        if(answerKey[property] === userAnsObj.userAns[counter]){
+            console.log(property + ": " + answerKey[property] + " array: " + userAnsObj.userAns[counter]);
+        }
+        counter++;
+            
+    }
     
   
 }
