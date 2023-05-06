@@ -15,10 +15,6 @@ var labels = document.querySelectorAll('label');
 var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
 
-var userAnsObj = {
-    userAns: []
-};
-
 var answerKey = {
     ans1: 4,
     ans2: 2,
@@ -75,14 +71,14 @@ next.addEventListener('click', function (event) {
             for (const answered of radios) {
                 if (answered.checked) {
                     answer = parseInt(answered.value); //parses answer from string to int
-                    userAnsObj.userAns.push(answer);
+                    userScore.userAns.push(answer);
                     break;
                 }
             }
 
             console.log(questionNum, "array: ", questionArray.length);
             console.log("answer for q", questionNum, " : ", answer);
-            console.log(userAnsObj.userAns);
+            console.log(userScore.userAns);
             
 
             questionArray[questionNum]();
@@ -120,15 +116,14 @@ function question4() {
 function gameOver(){
 
     console.log("end");
-    console.log("userAns: ",userAnsObj.userAns);
+    console.log("userAns: ",userScore.userAns);
     console.log("ansKey: ",answerKey);
 
     var counter = 0;
-    var correctNum = 0;
 
     for(let property in answerKey){
-        if(answerKey[property] === userAnsObj.userAns[counter]){
-            console.log(property + ": " + answerKey[property] + " array: " + userAnsObj.userAns[counter]);
+        if(answerKey[property] === userScore.userAns[counter]){
+            console.log(property + ": " + answerKey[property] + " array: " + userScore.userAns[counter]);
             userScore.userCorrectAnsNum++;
         }
         counter++;
@@ -136,7 +131,9 @@ function gameOver(){
     }
     console.log('number of correct: ',userScore.userCorrectAnsNum);
     console.log('time finished: ', userScore.userTimeFinish);
-  
+
+
+    localStorage.setItem('userScore', JSON.stringify(userScore));
 }
 
 
@@ -144,7 +141,7 @@ function gameOver(){
 var userScore = {
     userCorrectAnsNum: 0,
     userTimeFinish: 0,
-
+    userAns: []
 };
 
 
