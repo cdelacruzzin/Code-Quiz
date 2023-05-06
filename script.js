@@ -13,6 +13,8 @@ var questionArray = [question1, question2, question3, question4];
 var answerKey = [4,2,3,1];
 var userAnsArray = [];
 
+
+//when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
@@ -39,7 +41,6 @@ function setTime() {
 
 console.log(this)
 
-// && radios[1] &&radios[2] &&radios[3]
 next.addEventListener('click', function (event) {
     event.preventDefault();
     
@@ -48,6 +49,7 @@ next.addEventListener('click', function (event) {
     //the corresponding function will be called.
     //will show next question if button is checked, otherwise nothing will happen
     //the for loop determines which button was checked, and stores it into 'answer' variable
+    //after all questions answered, function to savwe answers will be called
   
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
