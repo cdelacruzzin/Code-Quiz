@@ -39,7 +39,9 @@ next.addEventListener('click', function (event) {
     event.preventDefault();
    
 
-
+//checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
+//the corresponding function will be called.
+//will show next question if button is checked, otherwise nothing will happen
     if((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)){
 
     } else {
