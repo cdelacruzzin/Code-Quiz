@@ -3,13 +3,14 @@ var time = document.querySelector('#timer');
 var radioDisplay = document.querySelector('.input-box');
 var next = document.querySelector('#next');
 
-// var questions = [question1(), question2(), question3(), question4()];
-// var correctAns = []
+var radios = document.querySelectorAll('input');
+var labels = document.querySelectorAll('label');
 
 
 start.addEventListener('click', function () {
 setTime();
 radioDisplay.setAttribute("style", "display: block");
+question1();
 
 });
 
@@ -39,6 +40,16 @@ var questionObj = {
 }
 
 function question1(){
+    labels[0].textContent = "hello";
+    labels[1].textContent = "my";
+    labels[2].textContent = "name";
+    labels[3].textContent = "carlos";
+
+
+
+
+
+
     //stores the value of the checked radio button to variable
     var selectedAns = document.querySelector('input[name="a"]:checked').value;
     return selectedAns;
