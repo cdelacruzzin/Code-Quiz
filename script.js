@@ -15,7 +15,7 @@ var labels = document.querySelectorAll('label');
 var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
 
-var userAnsArray = {
+var userAnsObj = {
     userAns: []
 };
 
@@ -70,14 +70,14 @@ next.addEventListener('click', function (event) {
             for (const answered of radios) {
                 if (answered.checked) {
                     answer = parseInt(answered.value); //parses answer from string to int
-                    userAnsArray.push(answer);
+                    userAnsObj.userAns.push(answer);
                     break;
                 }
             }
 
             console.log(questionNum, "array: ", questionArray.length);
             console.log("answer for q", questionNum, " : ", answer);
-            console.log(userAnsArray);
+            console.log(userAnsObj.userAns);
             
 
             questionArray[questionNum]();
@@ -116,7 +116,7 @@ function gameOver(){
 
     console.log("end");
     console.log(time.textContent);
-    console.log("userAns: ",userAnsArray);
+    console.log("userAns: ",userAnsObj.userAns);
     console.log("ansKey: ",answerKey);
 
 
