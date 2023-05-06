@@ -120,15 +120,17 @@ function gameOver(){
     console.log("ansKey: ",answerKey);
 
     var counter = 0;
+    var correctNum = 0;
 
     for(let property in answerKey){
         if(answerKey[property] === userAnsObj.userAns[counter]){
             console.log(property + ": " + answerKey[property] + " array: " + userAnsObj.userAns[counter]);
+            correctNum++;
         }
         counter++;
             
     }
-    
+    console.log('number of correct: ', correctNum);
   
 }
 
