@@ -27,6 +27,9 @@ var answerKey = {
 };
 
 
+
+
+
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
     setTime();
@@ -125,16 +128,20 @@ function gameOver(){
     for(let property in answerKey){
         if(answerKey[property] === userAnsObj.userAns[counter]){
             console.log(property + ": " + answerKey[property] + " array: " + userAnsObj.userAns[counter]);
-            correctNum++;
+            userScore.userCorrectAnsNum++;
         }
         counter++;
             
     }
-    console.log('number of correct: ', correctNum);
+    console.log('number of correct: ',userScore.userCorrectAnsNum);
   
 }
 
+var userScore = {
+    userCorrectAnsNum: 0,
+    userTimeFinish: 0,
 
+};
 
 
 
@@ -152,21 +159,13 @@ function gameOver(){
 
   //creates an object, and stores the answer in the object.
     //stores the object in storage and JSON.stringify to convert it to a string
-    function userScore(score, time){
-        this.score = score;
-        this.time = time;
-        this.msg = function(){
 
-        }
-
-    }
+    
 
 
-//     function userScore(){
-//     var userAns = {
-//         ans: userAnsArray
-//     };
+    function userScore(){
+
 
 //     console.log("object: ",userAns.ans);
 //     localStorage.setItem('userAns', JSON.stringify(userAns));
-// }
+}
