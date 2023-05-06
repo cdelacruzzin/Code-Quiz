@@ -47,6 +47,8 @@ next.addEventListener('click', function (event) {
     //the corresponding function will be called.
     //will show next question if button is checked, otherwise nothing will happen
     //the for loop determines which button was checked, and stores it into 'answer' variable
+    //creates an object, and stores the answer in the object.
+    //stores the object in storage and JSON.stringify to convert it to a string
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
         if (questionNum < questionArray.length) {
@@ -68,13 +70,6 @@ next.addEventListener('click', function (event) {
 
             console.log("object: ",userAns.ans);
             localStorage.setItem('userAns', JSON.stringify(userAns));
-
-
-
-
-
-
-
 
             questionNum++;
         } else {
