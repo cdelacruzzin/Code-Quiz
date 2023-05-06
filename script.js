@@ -8,7 +8,7 @@ var labels = document.querySelectorAll('label');
 
 //a counter to keep track of which question we are on
 var questionNum = 0;
-var questionArray = [question1, question2, question3];
+var questionArray = [question1, question2, question3, question4];
 
 start.addEventListener('click', function () {
 setTime();
