@@ -62,10 +62,12 @@ next.addEventListener('click', function (event) {
                 }
             }
 
+            var userAns = {
+                ans: userAnsArray
+            }
 
-
-
-
+            console.log("object: ",userAns.ans);
+            localStorage.setItem('userAns', JSON.stringify(userAns));
 
 
 
