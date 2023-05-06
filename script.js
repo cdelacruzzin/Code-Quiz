@@ -6,7 +6,7 @@ var next = document.querySelector('#next');
 var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
 
-
+//a counter to keep track of which question we are on
 var questionNum = 0;
 var questionArray = [question1, question2, question3];
 
@@ -38,21 +38,22 @@ function setTime() {
 
 
 
-function next(){
+function nextQ(){
+    console.log(questionNum);
     next.addEventListener('click', function(event){
     event.preventDefault();
-
+    questionNum++;
+    navigate(questionNum);
+    
 })
 }
 
 
 function navigate(questionNum){
-    console.log(questionNum);
     if(questionNum < questionArray.length){
         questionArray[0]();
-        questionNum++;
     }
-    console.log(questionNum);
+    
 }
 
 
@@ -63,6 +64,8 @@ function question1(){
     labels[2].textContent = "name";
     labels[3].textContent = "carlos";
     //stores the value of the checked radio button to variable
+
+    nextQ();
 
 }
 
