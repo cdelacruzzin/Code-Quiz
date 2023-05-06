@@ -11,6 +11,8 @@ var labels = document.querySelectorAll('label');
 var questionNum = 0;
 var questionArray = [question1, question2, question3, question4];
 
+var userAnsArray = [];
+
 start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: block");
@@ -44,14 +46,17 @@ next.addEventListener('click', function (event) {
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
     //the corresponding function will be called.
     //will show next question if button is checked, otherwise nothing will happen
+    //the for loop determines which button was checked, and stores it into 'answer' variable
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
         if (questionNum < questionArray.length) {
+
             questionArray[questionNum]();
 
+            var answer;
             for (const answered of radios) {
                 if (answered.checked) {
-                    console.log(answered.value);
+                    answer = answered.value;
                     break;
                 }
             }
@@ -60,18 +65,28 @@ next.addEventListener('click', function (event) {
 
 
 
+
+
+
+
+
+
+
+
+            questionNum++;
         } else {
             console.log("end");
         }
     }
     console.log(questionNum, "array: ", questionArray.length);
+    console.log("answer for q", questionNum, " : ", answer);
 });
 
 
 
 //when function is called, questions and answers change
 function question1() {
-    questionNum++;
+
     labels[0].textContent = "hello";
     labels[1].textContent = "my";
     labels[2].textContent = "name";
@@ -81,7 +96,6 @@ function question1() {
 }
 
 function question2() {
-    questionNum++;
     labels[0].textContent = "a";
     labels[1].textContent = "s";
     labels[2].textContent = "d";
@@ -90,7 +104,6 @@ function question2() {
 
 }
 function question3() {
-    questionNum++;
     labels[0].textContent = "q";
     labels[1].textContent = "w";
     labels[2].textContent = "e";
@@ -98,7 +111,6 @@ function question3() {
 
 }
 function question4() {
-    questionNum++;
     labels[0].textContent = "3";
     labels[1].textContent = "f";
     labels[2].textContent = "g";
