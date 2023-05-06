@@ -27,16 +27,16 @@ start.addEventListener('click', function () {
 
 });
 
-//sets a timer of 120s, and stops when it reaches 0s
+//sets a timer of 120s, and stops when it reaches 0s or the game over function is called
 function setTime() {
     var timeLeft = 120;
-    time.textContent = timeLeft; ``
+    time.textContent = timeLeft; 
 
-    var timeInterval = setInterval(function () {
+    var timeInterval = setInterval(function (event) {
         timeLeft--;
         time.textContent = timeLeft;
 
-        if (timeLeft === 0) {
+        if (timeLeft === 0 || gameOver) {
             clearInterval(timeInterval);
         }
     }, 1000);
@@ -54,12 +54,11 @@ next.addEventListener('click', function (event) {
     //will show next question if button is checked, otherwise nothing will happen
     //the for loop determines which button was checked, and stores it into 'answer' variable
     //after all questions answered, function to savwe answers will be called
+    //once all questions answered, 'next' button will stop working
   
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
         if (questionNum < questionArray.length ) {
-
-
 
             var answer;
             for (const answered of radios) {
@@ -75,14 +74,7 @@ next.addEventListener('click', function (event) {
             console.log(userAnsArray);
 
             questionArray[questionNum]();
-
-
-
             questionNum++;
-
-        } else {
-            
-            userScore();
         }
     }
 
@@ -113,7 +105,8 @@ function question4() {
 
 function gameOver(){
     console.log("end");
-window.alert('game over!');
+    console.log(time.textContent);
+  
 }
 
 
