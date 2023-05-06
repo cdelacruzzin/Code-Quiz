@@ -14,8 +14,15 @@ var labels = document.querySelectorAll('label');
 //a counter to keep track of which question we are on
 var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
-var answerKey = [4,2,3,1];
+
 var userAnsArray = [];
+
+var answerKey = {
+    ans1: 4,
+    ans2: 2,
+    ans3: 3,
+    ans4: 1
+}
 
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
@@ -63,7 +70,7 @@ next.addEventListener('click', function (event) {
             var answer;
             for (const answered of radios) {
                 if (answered.checked) {
-                    answer = answered.value;
+                    answer = parseInt(answered.value); //parses answer from string to int
                     userAnsArray.push(answer);
                     break;
                 }
@@ -72,6 +79,7 @@ next.addEventListener('click', function (event) {
             console.log(questionNum, "array: ", questionArray.length);
             console.log("answer for q", questionNum, " : ", answer);
             console.log(userAnsArray);
+            
 
             questionArray[questionNum]();
             questionNum++;
@@ -103,9 +111,21 @@ function question4() {
     labels[3].textContent = "d";
 }
 
+
+//compares the userAnsArray to the answerKey
 function gameOver(){
+
     console.log("end");
     console.log(time.textContent);
+    console.log("userAns: ",userAnsArray);
+    console.log("ansKey: ",answerKey);
+
+
+    if(userAnsArray == answerKey){
+        console.log("true");
+    }else {
+        console.log("false");
+    }
   
 }
 
