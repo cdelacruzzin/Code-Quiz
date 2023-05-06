@@ -21,8 +21,6 @@ main{
     max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
-
-    
 }
 .content .input-box{
     display: none;
