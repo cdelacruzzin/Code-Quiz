@@ -21,6 +21,7 @@ start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
     
+    
 });
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
@@ -33,11 +34,13 @@ function setTime() {
         timeLeft--;
         time.textContent = timeLeft;
 
-        if (timeLeft === 0 || gameOver) {
+        if (timeLeft === 0 || (userScore.userAns.length==4)) {
             clearInterval(timeInterval);
-        userScore.userTimeFinish = timeLeft;
         }
+        userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
     }, 1000);
+
+    
 }
 next.addEventListener('click', function (event) {
     event.preventDefault();    
@@ -68,6 +71,7 @@ next.addEventListener('click', function (event) {
             questionNum++;
         }
     }
+
 });
 
 //when function is called, questions and answers change
@@ -92,6 +96,14 @@ function question4() {
 }
 
 
+var userScore = {
+    userCorrectAnsNum: 0,
+    userTimeFinish: 0,
+    userAnsVal: [],
+    userAns: []
+};
+
+
 //compares the user answer value array to the answerKey object
 //adds a check mark to the correct answer
 //adds an x to the wrong answers
@@ -109,17 +121,15 @@ function gameOver(){
         counter++;
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
+    console.log(userScore.userTimeFinish);
     renderScore();
+    
 }
-var userScore = {
-    userCorrectAnsNum: 0,
-    userTimeFinish: 0,
-    userAnsVal: [],
-    userAns: []
-};
 
 function renderScore(){
+
      var finalScore = JSON.parse(localStorage.getItem("userScore"));
+    // console.log(userScore.userTimeFinish);
 
      if (finalScore !== null){
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
