@@ -28,7 +28,7 @@ start.addEventListener('click', function () {
 //stores the time left after the time interval ends to the user score object
 function setTime() {
     var timeLeft = 120;
-    time.textContent = timeLeft; 
+    
 
     var timeInterval = setInterval(function (event) {
         timeLeft--;
@@ -37,6 +37,7 @@ function setTime() {
         if (timeLeft === 0 || (userScore.userAns.length==4)) {
             clearInterval(timeInterval);
         }
+        time.textContent = timeLeft; 
         userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
     }, 1000);
 
@@ -131,6 +132,8 @@ function renderScore(){
   //shows the score
      var finalScore = JSON.parse(localStorage.getItem("userScore"));
      var liElem = document.querySelectorAll('li');
+     document.querySelector('.content').setAttribute("style", "display: none");
+     document.querySelector('section').setAttribute("style", "display: flex");
 
      if (finalScore !== null){
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
@@ -142,3 +145,5 @@ function renderScore(){
 
     }
 }
+//fix timer!! there is a 1 second delay
+//
