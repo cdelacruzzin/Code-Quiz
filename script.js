@@ -127,12 +127,18 @@ function gameOver(){
 }
 
 function renderScore(){
-
+  // Use JSON.parse() to convert text to JavaScript object
+  //shows the score
      var finalScore = JSON.parse(localStorage.getItem("userScore"));
-    // console.log(userScore.userTimeFinish);
+     var liElem = document.querySelectorAll('li');
 
      if (finalScore !== null){
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
         document.querySelector('.final-time').textContent = finalScore.userTimeFinish;
-     }
+        
+        for(var a = 0; a<4;a++){
+            liElem[a].textContent = finalScore.userAns[a];
+        }
+
+    }
 }
