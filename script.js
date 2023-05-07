@@ -111,7 +111,7 @@ function gameOver(){
     // console.log('number of correct: ',userScore.userCorrectAnsNum);
     // console.log('time finished: ', userScore.userTimeFinish);
     // console.log('userAns: ', userScore.userAns);
-    // console.log(userScore.userCorrectAns);
+    // console.log(userScore.userCorrectAns);x
 
     localStorage.setItem('userScore', JSON.stringify(userScore));
 }
