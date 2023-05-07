@@ -20,6 +20,7 @@ var answerKey = {
 start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
+    
 });
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
@@ -108,6 +109,7 @@ function gameOver(){
         counter++;
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
+    renderScore();
 }
 var userScore = {
     userCorrectAnsNum: 0,
@@ -120,6 +122,7 @@ function renderScore(){
      var finalScore = JSON.parse(localStorage.getItem("userScore"));
 
      if (finalScore !== null){
-        
+        document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
+        document.querySelector('.final-time').textContent = finalScore.userTimeFinish;
      }
 }
