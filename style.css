@@ -22,6 +22,7 @@ main{
     max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
+    display: none;
 }
 .content .input-box{
     display: none;
@@ -34,4 +35,14 @@ main{
 }
 .question{
     word-wrap: break-word;
+}
+section{
+    min-width: 20rem;
+    max-width: 30rem;
+    min-height: 10rem;
+    border: 3px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
