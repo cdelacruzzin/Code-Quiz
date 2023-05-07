@@ -146,4 +146,5 @@ function renderScore(){
     }
 }
 //fix timer!! there is a 1 second delay
-//
+//start button needs to run again
+//when start button is clicked more than once, the timer stops working
