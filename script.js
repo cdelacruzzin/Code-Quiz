@@ -1,15 +1,9 @@
-
-
-
-
 var start = document.querySelector('.start');
 var time = document.querySelector('#timer');
 var radioDisplay = document.querySelector('.input-box');
 var next = document.querySelector('#next');
-
-var radios = document.querySelectorAll('input[name="a"]');
+var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
-
 
 //a counter to keep track of which question we are on
 var questionNum = 0;
@@ -21,10 +15,6 @@ var answerKey = {
     ans3: 3,
     ans4: 1
 };
-
-
-
-
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
@@ -49,13 +39,9 @@ function setTime() {
     }, 1000);
 }
 
-
-console.log(this)
-
+console.log(this);
 next.addEventListener('click', function (event) {
-    event.preventDefault();
-    
-
+    event.preventDefault();    
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
     //the corresponding function will be called.
     //will show next question if button is checked, otherwise nothing will happen
@@ -63,6 +49,7 @@ next.addEventListener('click', function (event) {
     //after all questions answered, function to savwe answers will be called
     //once all questions answered, 'next' button will stop working
   
+
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
         if (questionNum < questionArray.length ) {
@@ -71,24 +58,18 @@ next.addEventListener('click', function (event) {
             for (const answered of radios) {
                 if (answered.checked) {
                     answer = parseInt(answered.value); //parses answer from string to int
+                    selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stopred the label sorresponding to the selected radio button into a variable"
+
+                    userScore.userCorrectAns.push("Q"+ (questionNum+1)+ ": "+ selectedQ);
                     userScore.userAns.push(answer);
                     break;
                 }
             }
-
-            console.log(questionNum, "array: ", questionArray.length);
-            console.log("answer for q", questionNum, " : ", answer);
-            console.log(userScore.userAns);
-            
-
             questionArray[questionNum]();
             questionNum++;
         }
     }
-
 });
-
-
 
 //when function is called, questions and answers change
 
@@ -114,56 +95,31 @@ function question4() {
 
 //compares the userAnsArray to the answerKey
 function gameOver(){
-
-    console.log("end");
-    console.log("userAns: ",userScore.userAns);
-    console.log("ansKey: ",answerKey);
-
     var counter = 0;
-
     for(let property in answerKey){
         if(answerKey[property] === userScore.userAns[counter]){
-            console.log(property + ": " + answerKey[property] + " array: " + userScore.userAns[counter]);
+            // console.log(property + ": " + answerKey[property] + " array: " + userScore.userAns[counter]);
+
+
+   
+            userScore.userCorrectAns[counter] += '✔️';
+            console.log(userScore.userCorrectAns[counter]);
             userScore.userCorrectAnsNum++;
         }
         counter++;
-            
     }
-    console.log('number of correct: ',userScore.userCorrectAnsNum);
-    console.log('time finished: ', userScore.userTimeFinish);
-
+    // console.log('number of correct: ',userScore.userCorrectAnsNum);
+    // console.log('time finished: ', userScore.userTimeFinish);
+    // console.log('userAns: ', userScore.userAns);
+    // console.log(userScore.userCorrectAns);
 
     localStorage.setItem('userScore', JSON.stringify(userScore));
 }
-
-
-
+//✔️❌
 var userScore = {
     userCorrectAnsNum: 0,
     userTimeFinish: 0,
-    userAns: []
+    userAns: [],
+    userCorrectAns: []
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //creates an object, and stores the answer in the object.
-    //stores the object in storage and JSON.stringify to convert it to a string
-
-    
-
-
-
-
-//     console.log("object: ",userAns.ans);
-//     localStorage.setItem('userAns', JSON.stringify(userAns));
 
