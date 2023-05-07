@@ -60,8 +60,8 @@ next.addEventListener('click', function (event) {
                     answer = parseInt(answered.value); //parses answer from string to int
                     selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stopred the label sorresponding to the selected radio button into a variable"
 
-                    userScore.userCorrectAns.push("Q"+ (questionNum+1)+ ": "+ selectedQ);
-                    userScore.userAns.push(answer);
+                    userScore.userAns.push("Q"+ (questionNum+1)+ ": "+ selectedQ);
+                    userScore.userAnsVal.push(answer);
                     break;
                 }
             }
@@ -93,33 +93,35 @@ function question4() {
 }
 
 
-//compares the userAnsArray to the answerKey
+//compares the user answer value array to the answerKey object
+//adds a check mark to the correct answer
+//adds an x to the wrong answers
+//updates the number of correct answers the user got right
+//stores the userScore object to JSON Stringfy
 function gameOver(){
     var counter = 0;
     for(let property in answerKey){
-        if(answerKey[property] === userScore.userAns[counter]){
-            // console.log(property + ": " + answerKey[property] + " array: " + userScore.userAns[counter]);
-
-
-   
-            userScore.userCorrectAns[counter] += '✔️';
-            console.log(userScore.userCorrectAns[counter]);
+        if(answerKey[property] === userScore.userAnsVal[counter]){
+            userScore.userAns[counter] += '✔️';
             userScore.userCorrectAnsNum++;
+        } else {
+            userScore.userAns[counter] += '❌';
         }
         counter++;
     }
-    // console.log('number of correct: ',userScore.userCorrectAnsNum);
-    // console.log('time finished: ', userScore.userTimeFinish);
-    // console.log('userAns: ', userScore.userAns);
-    // console.log(userScore.userCorrectAns);x
-
     localStorage.setItem('userScore', JSON.stringify(userScore));
 }
-//✔️❌
 var userScore = {
     userCorrectAnsNum: 0,
     userTimeFinish: 0,
-    userAns: [],
-    userCorrectAns: []
+    userAnsVal: [],
+    userAns: []
 };
 
+function renderScore(){
+     var finalScore = JSON.parse(localStorage.getItem("userScore"));
+
+     if (finalScore !== null){
+        
+     }
+}
