@@ -38,8 +38,6 @@ function setTime() {
         }
     }, 1000);
 }
-
-console.log(this);
 next.addEventListener('click', function (event) {
     event.preventDefault();    
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
