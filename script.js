@@ -6,9 +6,11 @@ var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
 var form = document.querySelectorAll('.content');
 
+
 //a counter to keep track of which question we are on
 var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
+var counter = 0;
 
 var answerKey = {
     ans1: 4,
@@ -19,22 +21,37 @@ var answerKey = {
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
+    initialSet.initialTime.timer = 120;
     initialSet.initialTime.startTime();
-    userScore.userAns.splice(0);
     
+    userScore.userAns.splice(0);
+    questionNum = 0;
+    userScore.userAnsVal.splice(0);
+    counter = 0;
+    userScore.userCorrectAnsNum = 0;
+
+
     radioDisplay.setAttribute("style", "display: flex");
     document.querySelector('.content').setAttribute("style", "display: block");
     document.querySelector('section').setAttribute("style", "display: none");
+
+
+
+    for(var a = 0; a < initialSet.initialQs.length; a++){
+        labels[a].textContent = initialSet.initialQs[a];
+    }
+    
     
 
-    console.log("starting time: ", initialSet.initialTime.timer);
-    console.log('array len: ', userScore.userAns.length);
-
+    console.log(userScore);
+    // console.log(initialSet.initialQs,length);
+    // console.log("starting time: ", initialSet.initialTime.timer);
+    // console.log('array len: ', userScore.userAns.length);
+    // console.log("counter: ", counter);
+    // console.log("questionNum: ", questionNum);
 });
 
 
-
-function nextBtn() {
 
     next.addEventListener('click', function (event) {
         event.preventDefault();
@@ -68,8 +85,7 @@ function nextBtn() {
 
     });
 
-}
-nextBtn();
+
 
 
 //when function is called, questions and answers change
@@ -108,21 +124,24 @@ var userScore = {
 //updates the number of correct answers the user got right
 //stores the userScore object to JSON Stringfy
 function gameOver() {
-    var counter = 0;
+    
     for (let property in answerKey) {
         if (answerKey[property] === userScore.userAnsVal[counter]) {
             userScore.userAns[counter] += '✔️';
             userScore.userCorrectAnsNum++;
         } else {
             userScore.userAns[counter] += '❌';
+
         }
+        
         counter++;
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
-    console.log("time: ", userScore.userTimeFinish);
-    console.log('array length: ', userScore.userAns.length);
-    console.log('time finish: ', userScore.userTimeFinish);
-    console.log(initialSet.initialQs.a_zero);
+    // console.log("time: ", userScore.userTimeFinish);
+    // console.log('array length: ', userScore.userAns.length);
+    // console.log('time finish: ', userScore.userTimeFinish);
+    // console.log('counter: ', counter);
+    console.log(userScore);
     renderScore();
 
 }
@@ -131,6 +150,7 @@ function renderScore() {
     //shows the score
     var finalScore = JSON.parse(localStorage.getItem("userScore"));
     var liElem = document.querySelectorAll('li');
+
     document.querySelector('.content').setAttribute("style", "display: none");
     document.querySelector('section').setAttribute("style", "display: flex");
 
@@ -143,15 +163,6 @@ function renderScore() {
         }
 
     }
-    // start.addEventListener('click', function () {
-
-
-
-    //     document.querySelector('.content').removeAttribute("style", "display: none");
-    //     document.querySelector('section').removeAttribute("style", "display: flex");
-
-
-    // });
 }
 
 var initialSet = {
@@ -159,33 +170,28 @@ var initialSet = {
         timer: 120, //initial time. is not supposed to change
         timeInterval: null,
         startTime: function () {
-            var timeLeft = 120;//stores initial time into variable, so the initial time won't be reassigned
+            // var timeLeft = 120;//stores initial time into variable, so the initial time won't be reassigned
             var timeInterval = setInterval(function () {
-                timeLeft--;
-                time.textContent = timeLeft;
-                userScore.userTimeFinish = timeLeft; //when interval gets stopped, the time will be stored in userTimeFinish object
-                if (timeLeft === 0 || (userScore.userAns.length === 4)) {
+                initialSet.initialTime.timer--;
+                time.textContent = initialSet.initialTime.timer;
+                userScore.userTimeFinish = initialSet.initialTime.timer; //when interval gets stopped, the time will be stored in userTimeFinish object
+                if (initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
                     clearInterval(timeInterval);
                 }
-                time.textContent = timeLeft + 1;
+                time.textContent = initialSet.initialTime.timer + 1;
             }, 1000);
         },
     },
-    initialQs: [document.getElementById('a_zero').textContent,
-    document.getElementById('a_one').textContent,
-    document.getElementById('a_two').textContent,
-    document.getElementById('a_three').textContent,]
-    
-    // {
-
-    //     a_zero: document.getElementById('a_zero').textContent,
-    //     a_one: document.getElementById('a_one').textContent,
-    //     a_two: document.getElementById('a_two').textContent,
-    //     a_three: document.getElementById('a_three').textContent,
-    // }
+    //there are the initial question on the html doc
+    initialQs: [
+        document.getElementById('a_zero').textContent,
+        document.getElementById('a_one').textContent,
+        document.getElementById('a_two').textContent,
+        document.getElementById('a_three').textContent,
+    ]
 };
 
-console.log(initialSet.initialQs[1])
+console.log(initialSet.initialQs[2])
 //fix timer!! there is a 1 second delay
 //start button needs to run again
 //when start button is clicked more than once, the timer stops working
