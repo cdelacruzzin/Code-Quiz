@@ -18,69 +18,69 @@ var answerKey = {
 };
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
-var startFunc = start.addEventListener('click', function () {
+start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
-    
-    
+
+
 });
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
 //stores the time left after the time interval ends to the user score object
 function setTime() {
     var timeLeft = 120;
-    
 
-    var timeInterval = setInterval(function (event) {
+
+    var timeInterval = setInterval(function () {
         timeLeft--;
         time.textContent = timeLeft;
 
-        if (timeLeft === 0 || (userScore.userAns.length===4)) {
+        if (timeLeft === 0 || (userScore.userAns.length === 4)) {
             clearInterval(timeInterval);
         }
-         
+
         userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
-    time.textContent = timeLeft +1; 
+        time.textContent = timeLeft + 1;
     }, 1000);
 
-    
+
 }
 
 
 
-function nextBtn(){
+function nextBtn() {
 
-next.addEventListener('click', function (event) {
-    event.preventDefault();    
-    //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
-    //the corresponding function will be called.
-    //will show next question if button is checked, otherwise nothing will happen
-    //the for loop determines which button was checked, and stores it into 'answer' variable
-    //after all questions answered, function to savwe answers will be called
-    //once all questions answered, 'next' button will stop working
-  
+    next.addEventListener('click', function (event) {
+        event.preventDefault();
+        //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
+        //the corresponding function will be called.
+        //will show next question if button is checked, otherwise nothing will happen
+        //the for loop determines which button was checked, and stores it into 'answer' variable
+        //after all questions answered, function to savwe answers will be called
+        //once all questions answered, 'next' button will stop working
 
-    if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
-    } else {
-        if (questionNum < questionArray.length ) {
 
-            var answer;
-            for (const answered of radios) {
-                if (answered.checked) {
-                    answer = parseInt(answered.value); //parses answer from string to int
-                    selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stored the label corresponding to the selected radio button into a variable"
+        if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
+        } else {
+            if (questionNum < questionArray.length) {
 
-                    userScore.userAns.push("Q"+ (questionNum+1)+ ": "+ selectedQ);
-                    userScore.userAnsVal.push(answer);
-                    break;
+                var answer;
+                for (const answered of radios) {
+                    if (answered.checked) {
+                        answer = parseInt(answered.value); //parses answer from string to int
+                        selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stored the label corresponding to the selected radio button into a variable"
+
+                        userScore.userAns.push("Q" + (questionNum + 1) + ": " + selectedQ);
+                        userScore.userAnsVal.push(answer);
+                        break;
+                    }
                 }
+                questionArray[questionNum]();
+                questionNum++;
             }
-            questionArray[questionNum]();
-            questionNum++;
         }
-    }
 
-});
+    });
 
 }
 nextBtn();
@@ -121,10 +121,10 @@ var userScore = {
 //adds an x to the wrong answers
 //updates the number of correct answers the user got right
 //stores the userScore object to JSON Stringfy
-function gameOver(){
+function gameOver() {
     var counter = 0;
-    for(let property in answerKey){
-        if(answerKey[property] === userScore.userAnsVal[counter]){
+    for (let property in answerKey) {
+        if (answerKey[property] === userScore.userAnsVal[counter]) {
             userScore.userAns[counter] += '✔️';
             userScore.userCorrectAnsNum++;
         } else {
@@ -133,47 +133,55 @@ function gameOver(){
         counter++;
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
+    console.log("time: ", userScore.userTimeFinish);
+    console.log('length: ', userScore.userAns.length);
     console.log(userScore.userTimeFinish);
+    console.log(initialSet.initialQs.a_zero);
     renderScore();
 
 }
-function renderScore(){
-  // Use JSON.parse() to convert text to JavaScript object
-  //shows the score
-     var finalScore = JSON.parse(localStorage.getItem("userScore"));
-     var liElem = document.querySelectorAll('li');
-     document.querySelector('.content').setAttribute("style", "display: none");
-     document.querySelector('section').setAttribute("style", "display: flex");
+function renderScore() {
+    // Use JSON.parse() to convert text to JavaScript object
+    //shows the score
+    var finalScore = JSON.parse(localStorage.getItem("userScore"));
+    var liElem = document.querySelectorAll('li');
+    document.querySelector('.content').setAttribute("style", "display: none");
+    document.querySelector('section').setAttribute("style", "display: flex");
 
-     if (finalScore !== null){
+    if (finalScore !== null) {
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
         document.querySelector('.final-time').textContent = finalScore.userTimeFinish;
-        
-        for(var a = 0; a<4;a++){
+
+        for (var a = 0; a < 4; a++) {
             liElem[a].textContent = finalScore.userAns[a];
         }
 
     }
     start.addEventListener('click', function () {
+
         setTime();
+
         document.querySelector('.content').removeAttribute("style", "display: none");
         document.querySelector('section').removeAttribute("style", "display: flex");
-        var a_zero = document.getElementById('a_zero')
-        var a_one = document.getElementById('a_one')
-        var a_two = document.getElementById('a_two')
-        var a_three = document.getElementById('a_three')
-
-        a_zero.textContent = "html";
-        a_one.textContent = "html"; 
-        a_two.textContent = "css"; 
-        a_three.textContent = "htmJavascriptl"; 
         
-        nextBtn();
 
-        questionNum = 0;
-        
     });
 }
+
+var initialSet = {
+    time: 120,
+    initialTime: {
+    
+    },
+    initialQs: {
+        a_zero: document.getElementById('a_zero').textContent,
+        a_one: document.getElementById('a_one').textContent,
+        a_two: document.getElementById('a_two').textContent,
+        a_three: document.getElementById('a_three').textContent,
+    }
+};
+
+
 //fix timer!! there is a 1 second delay
 //start button needs to run again
 //when start button is clicked more than once, the timer stops working
