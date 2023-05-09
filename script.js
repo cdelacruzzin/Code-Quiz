@@ -171,17 +171,30 @@ function renderScore() {
 var initialSet = {
 
     initialTime: {
-        timer: 3,
-        timeInterval: setInterval(function () {
-            time.textContent =  initialSet.initialTime.timer;
-            initialSet.initialTime.timer--;
-            if ( initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
-                clearInterval(initialSet.initialTime.timeInterval);
-            }
-            userScore.userTimeFinish =  initialSet.initialTime.timer; //when clearInterval condition is true, the time will be recorded in the object
-            time.textContent =  initialSet.initialTime.timer;
-        }, 1000)
+        timer: 121,
+        timeInterval: null,
+        startTime: function () {
+
+            this.timeInterval = setInterval(function () {
+                time.textContent = initialSet.initialTime.timer;
+                initialSet.initialTime.timer--;
+                if (initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
+                    clearInterval(initialSet.initialTime.timeInterval);
+                }
+                userScore.userTimeFinish = initialSet.initialTime.timer; //when clearInterval condition is true, the time will be recorded in the object
+                time.textContent = initialSet.initialTime.timer;
+            }, 1000);
+
+            console.log("timer: ", initialSet.initialTime.timer);
+        },
+
     },
+//initialSet.initialTime.timer vs this.timer???
+
+
+
+
+
     initialQs: {
         a_zero: document.getElementById('a_zero').textContent,
         a_one: document.getElementById('a_one').textContent,
@@ -190,8 +203,8 @@ var initialSet = {
     }
 };
 
-initialSet;
-console.log(initialSet.initialTime.timeInterval);
+initialSet.initialTime.startTime();
+
 
 //fix timer!! there is a 1 second delay
 //start button needs to run again
