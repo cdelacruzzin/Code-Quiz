@@ -19,8 +19,9 @@ var answerKey = {
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
-    setTime();
+    initialSet.initialTime.startTime();
     radioDisplay.setAttribute("style", "display: flex");
+
 
 
 });
@@ -157,15 +158,15 @@ function renderScore() {
         }
 
     }
-    start.addEventListener('click', function () {
+    // start.addEventListener('click', function () {
 
-        setTime();
+        
 
-        document.querySelector('.content').removeAttribute("style", "display: none");
-        document.querySelector('section').removeAttribute("style", "display: flex");
+    //     document.querySelector('.content').removeAttribute("style", "display: none");
+    //     document.querySelector('section').removeAttribute("style", "display: flex");
 
 
-    });
+    // });
 }
 
 var initialSet = {
@@ -182,7 +183,7 @@ var initialSet = {
                     clearInterval(initialSet.initialTime.timeInterval);
                 }
                 userScore.userTimeFinish = initialSet.initialTime.timer; //when clearInterval condition is true, the time will be recorded in the object
-                time.textContent = initialSet.initialTime.timer;
+                time.textContent = initialSet.initialTime.timer + 1;
             }, 1000);
 
             console.log("timer: ", initialSet.initialTime.timer);
@@ -203,7 +204,8 @@ var initialSet = {
     }
 };
 
-initialSet.initialTime.startTime();
+// initialSet.initialTime.startTime();
+// console.log(initialSet.initialTime.timer);
 
 
 //fix timer!! there is a 1 second delay
