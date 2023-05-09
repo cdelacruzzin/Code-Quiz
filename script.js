@@ -22,6 +22,7 @@ start.addEventListener('click', function () {
     initialSet.initialTime.startTime();
     radioDisplay.setAttribute("style", "display: flex");
 
+    console.log("starting time: ", initialSet.initialTime.timer);
 
 
 });
@@ -170,25 +171,23 @@ function renderScore() {
 }
 
 var initialSet = {
-
     initialTime: {
-        timer: 121,
-        timeInterval: null,
+        timer: 120, //initial time. is not supposed to change
+        timeInterval: null, 
         startTime: function () {
+            initialSet.initialTime.timeInterval = setInterval(function () {
 
-            this.timeInterval = setInterval(function () {
-                time.textContent = initialSet.initialTime.timer;
-                initialSet.initialTime.timer--;
-                if (initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
+                userTime= initialSet.initialTime.timer; //stores initial time into variable, so the initial time won't be reassigned
+                userTime--;
+                time.textContent = userTime;
+                
+                if (userTime === 0 || (userScore.userAns.length === 4)) {
                     clearInterval(initialSet.initialTime.timeInterval);
                 }
-                userScore.userTimeFinish = initialSet.initialTime.timer; //when clearInterval condition is true, the time will be recorded in the object
-                time.textContent = initialSet.initialTime.timer + 1;
+                userScore.userTimeFinish = userTime; //when clearInterval condition is true, the time will be recorded in the object
+                time.textContent = userTime;
             }, 1000);
-
-            console.log("timer: ", initialSet.initialTime.timer);
         },
-
     },
 //initialSet.initialTime.timer vs this.timer???
 
