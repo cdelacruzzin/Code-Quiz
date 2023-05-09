@@ -21,32 +21,15 @@ var answerKey = {
 start.addEventListener('click', function () {
     initialSet.initialTime.startTime();
     radioDisplay.setAttribute("style", "display: flex");
+    userScore.userAns.splice(0);
+    document.querySelector('.content').setAttribute("style", "display: block");
+    document.querySelector('section').setAttribute("style", "display: none");
+
 
     console.log("starting time: ", initialSet.initialTime.timer);
-
+    console.log(userScore.userAns.length);
 
 });
-
-//sets a timer of 120s, and stops when it reaches 0s or the game over function is called
-//stores the time left after the time interval ends to the user score object
-// function setTime() {
-//     var timeLeft = 120;
-
-
-//     var timeInterval = setInterval(function () {
-//         timeLeft--;
-//         time.textContent = timeLeft;
-
-//         if (timeLeft === 0 || (userScore.userAns.length === 4)) {
-//             clearInterval(timeInterval);
-//         }
-
-//         userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
-//         time.textContent = timeLeft + 1;
-//     }, 1000);
-
-
-// }
 
 
 
@@ -137,7 +120,7 @@ function gameOver() {
     localStorage.setItem('userScore', JSON.stringify(userScore));
     console.log("time: ", userScore.userTimeFinish);
     console.log('length: ', userScore.userAns.length);
-    console.log(userScore.userTimeFinish);
+    console.log('time finish: ', userScore.userTimeFinish);
     console.log(initialSet.initialQs.a_zero);
     renderScore();
 
@@ -161,7 +144,7 @@ function renderScore() {
     }
     // start.addEventListener('click', function () {
 
-        
+
 
     //     document.querySelector('.content').removeAttribute("style", "display: none");
     //     document.querySelector('section').removeAttribute("style", "display: flex");
@@ -173,22 +156,22 @@ function renderScore() {
 var initialSet = {
     initialTime: {
         timer: 120, //initial time. is not supposed to change
-        timeInterval: null, 
+        timeInterval: null,
         startTime: function () {
             var timeLeft = 120;//stores initial time into variable, so the initial time won't be reassigned
             var timeInterval = setInterval(function () {
                 timeLeft--;
                 time.textContent = timeLeft;
-                // initialSet.initialTime.timer = timeLeft;
+                userScore.userTimeFinish = timeLeft; //when interval gets stopped, the time will be stored in userTimeFinish object
                 if (timeLeft === 0 || (userScore.userAns.length === 4)) {
                     clearInterval(timeInterval);
-                    // gameOver();
                 }
                 time.textContent = timeLeft + 1;
             }, 1000);
         },
     },
-//initialSet.initialTime.timer vs this.timer???
+
+    //initialSet.initialTime.timer vs this.timer???
 
 
 
