@@ -22,7 +22,6 @@ main{
     max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
-    display: none;
 }
 .content .input-box{
     display: none;
@@ -41,7 +40,7 @@ section{
     max-width: 30rem;
     min-height: 10rem;
     border: 3px solid red;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;

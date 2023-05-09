@@ -4,6 +4,7 @@ var radioDisplay = document.querySelector('.input-box');
 var next = document.querySelector('#next');
 var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
+var form = document.querySelectorAll('.content');
 
 //a counter to keep track of which question we are on
 var questionNum = 0;
@@ -17,7 +18,7 @@ var answerKey = {
 };
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
-start.addEventListener('click', function () {
+var startFunc = start.addEventListener('click', function () {
     setTime();
     radioDisplay.setAttribute("style", "display: flex");
     
@@ -34,15 +35,21 @@ function setTime() {
         timeLeft--;
         time.textContent = timeLeft;
 
-        if (timeLeft === 0 || (userScore.userAns.length==4)) {
+        if (timeLeft === 0 || (userScore.userAns.length===4)) {
             clearInterval(timeInterval);
         }
-        time.textContent = timeLeft; 
+         
         userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
+    time.textContent = timeLeft +1; 
     }, 1000);
 
     
 }
+
+
+
+function nextBtn(){
+
 next.addEventListener('click', function (event) {
     event.preventDefault();    
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
@@ -61,7 +68,7 @@ next.addEventListener('click', function (event) {
             for (const answered of radios) {
                 if (answered.checked) {
                     answer = parseInt(answered.value); //parses answer from string to int
-                    selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stopred the label sorresponding to the selected radio button into a variable"
+                    selectedQ = document.querySelector(`label[for="${answered.id}"]`).textContent; //stored the label corresponding to the selected radio button into a variable"
 
                     userScore.userAns.push("Q"+ (questionNum+1)+ ": "+ selectedQ);
                     userScore.userAnsVal.push(answer);
@@ -74,6 +81,10 @@ next.addEventListener('click', function (event) {
     }
 
 });
+
+}
+nextBtn();
+
 
 //when function is called, questions and answers change
 
@@ -124,9 +135,8 @@ function gameOver(){
     localStorage.setItem('userScore', JSON.stringify(userScore));
     console.log(userScore.userTimeFinish);
     renderScore();
-    
-}
 
+}
 function renderScore(){
   // Use JSON.parse() to convert text to JavaScript object
   //shows the score
@@ -144,7 +154,27 @@ function renderScore(){
         }
 
     }
+    start.addEventListener('click', function () {
+        setTime();
+        document.querySelector('.content').removeAttribute("style", "display: none");
+        document.querySelector('section').removeAttribute("style", "display: flex");
+        var a_zero = document.getElementById('a_zero')
+        var a_one = document.getElementById('a_one')
+        var a_two = document.getElementById('a_two')
+        var a_three = document.getElementById('a_three')
+
+        a_zero.textContent = "html";
+        a_one.textContent = "html"; 
+        a_two.textContent = "css"; 
+        a_three.textContent = "htmJavascriptl"; 
+        
+        nextBtn();
+
+        questionNum = 0;
+        
+    });
 }
 //fix timer!! there is a 1 second delay
 //start button needs to run again
 //when start button is clicked more than once, the timer stops working
+// subtract time from timer when user answers incorrect
