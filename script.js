@@ -20,14 +20,15 @@ var answerKey = {
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
     initialSet.initialTime.startTime();
-    radioDisplay.setAttribute("style", "display: flex");
     userScore.userAns.splice(0);
+    
+    radioDisplay.setAttribute("style", "display: flex");
     document.querySelector('.content').setAttribute("style", "display: block");
     document.querySelector('section').setAttribute("style", "display: none");
-
+    
 
     console.log("starting time: ", initialSet.initialTime.timer);
-    console.log(userScore.userAns.length);
+    console.log('array len: ', userScore.userAns.length);
 
 });
 
@@ -119,7 +120,7 @@ function gameOver() {
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
     console.log("time: ", userScore.userTimeFinish);
-    console.log('length: ', userScore.userAns.length);
+    console.log('array length: ', userScore.userAns.length);
     console.log('time finish: ', userScore.userTimeFinish);
     console.log(initialSet.initialQs.a_zero);
     renderScore();
@@ -170,25 +171,21 @@ var initialSet = {
             }, 1000);
         },
     },
+    initialQs: [document.getElementById('a_zero').textContent,
+    document.getElementById('a_one').textContent,
+    document.getElementById('a_two').textContent,
+    document.getElementById('a_three').textContent,]
+    
+    // {
 
-    //initialSet.initialTime.timer vs this.timer???
-
-
-
-
-
-    initialQs: {
-        a_zero: document.getElementById('a_zero').textContent,
-        a_one: document.getElementById('a_one').textContent,
-        a_two: document.getElementById('a_two').textContent,
-        a_three: document.getElementById('a_three').textContent,
-    }
+    //     a_zero: document.getElementById('a_zero').textContent,
+    //     a_one: document.getElementById('a_one').textContent,
+    //     a_two: document.getElementById('a_two').textContent,
+    //     a_three: document.getElementById('a_three').textContent,
+    // }
 };
 
-// initialSet.initialTime.startTime();
-// console.log(initialSet.initialTime.timer);
-
-
+console.log(initialSet.initialQs[1])
 //fix timer!! there is a 1 second delay
 //start button needs to run again
 //when start button is clicked more than once, the timer stops working
