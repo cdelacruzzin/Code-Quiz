@@ -175,17 +175,16 @@ var initialSet = {
         timer: 120, //initial time. is not supposed to change
         timeInterval: null, 
         startTime: function () {
-            initialSet.initialTime.timeInterval = setInterval(function () {
-
-                userTime= initialSet.initialTime.timer; //stores initial time into variable, so the initial time won't be reassigned
-                userTime--;
-                time.textContent = userTime;
-                
-                if (userTime === 0 || (userScore.userAns.length === 4)) {
-                    clearInterval(initialSet.initialTime.timeInterval);
+            var timeLeft = 120;//stores initial time into variable, so the initial time won't be reassigned
+            var timeInterval = setInterval(function () {
+                timeLeft--;
+                time.textContent = timeLeft;
+                // initialSet.initialTime.timer = timeLeft;
+                if (timeLeft === 0 || (userScore.userAns.length === 4)) {
+                    clearInterval(timeInterval);
+                    // gameOver();
                 }
-                userScore.userTimeFinish = userTime; //when clearInterval condition is true, the time will be recorded in the object
-                time.textContent = userTime;
+                time.textContent = timeLeft + 1;
             }, 1000);
         },
     },
