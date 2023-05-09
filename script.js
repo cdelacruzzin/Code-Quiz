@@ -27,24 +27,24 @@ start.addEventListener('click', function () {
 
 //sets a timer of 120s, and stops when it reaches 0s or the game over function is called
 //stores the time left after the time interval ends to the user score object
-function setTime() {
-    var timeLeft = 120;
+// function setTime() {
+//     var timeLeft = 120;
 
 
-    var timeInterval = setInterval(function () {
-        timeLeft--;
-        time.textContent = timeLeft;
+//     var timeInterval = setInterval(function () {
+//         timeLeft--;
+//         time.textContent = timeLeft;
 
-        if (timeLeft === 0 || (userScore.userAns.length === 4)) {
-            clearInterval(timeInterval);
-        }
+//         if (timeLeft === 0 || (userScore.userAns.length === 4)) {
+//             clearInterval(timeInterval);
+//         }
 
-        userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
-        time.textContent = timeLeft + 1;
-    }, 1000);
+//         userScore.userTimeFinish = timeLeft; //when clearInterval condition is true, the time will be recorded in the object
+//         time.textContent = timeLeft + 1;
+//     }, 1000);
 
 
-}
+// }
 
 
 
@@ -163,15 +163,24 @@ function renderScore() {
 
         document.querySelector('.content').removeAttribute("style", "display: none");
         document.querySelector('section').removeAttribute("style", "display: flex");
-        
+
 
     });
 }
 
 var initialSet = {
-    time: 120,
+
     initialTime: {
-    
+        timer: 3,
+        timeInterval: setInterval(function () {
+            time.textContent =  initialSet.initialTime.timer;
+            initialSet.initialTime.timer--;
+            if ( initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
+                clearInterval(initialSet.initialTime.timeInterval);
+            }
+            userScore.userTimeFinish =  initialSet.initialTime.timer; //when clearInterval condition is true, the time will be recorded in the object
+            time.textContent =  initialSet.initialTime.timer;
+        }, 1000)
     },
     initialQs: {
         a_zero: document.getElementById('a_zero').textContent,
@@ -181,6 +190,8 @@ var initialSet = {
     }
 };
 
+initialSet;
+console.log(initialSet.initialTime.timeInterval);
 
 //fix timer!! there is a 1 second delay
 //start button needs to run again
