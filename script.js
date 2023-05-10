@@ -143,7 +143,8 @@ function renderScore() {
 
     if (finalScore !== null) {
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum; //shows the number of correct answers the user got
-        document.querySelector('.final-time').textContent = finalScore.userTimeFinish; // shows the time when user finished quiz
+
+        document.querySelector('.final-time').textContent = initialSet.initialTime.timer; // shows the time when user finished quiz
 
         for (var a = 0; a < 4; a++) {
             liElem[a].textContent = finalScore.userAns[a];
