@@ -45,7 +45,6 @@ function initialize() {
 var initialSet = {
     //
     initialTime: {
-        // timer: 120,
         timeInterval: null,
         startTime: function () {
             var timeInterval = setInterval(function () {
@@ -99,6 +98,8 @@ next.addEventListener('click', function (event) {
         }
     }
 });
+
+//when functions are called, the labels' text content will change to questions for the corresponding question
 function question2() {
     labels[0].textContent = "a";
     labels[1].textContent = "s";
