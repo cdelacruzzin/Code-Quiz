@@ -18,6 +18,8 @@ var answerKey = {
     ans3: 3,
     ans4: 1
 };
+
+var answerKey = [4, 2, 3, 1];
 //an object to store user's data
 var userScore = {
     userCorrectAnsNum: 0,
@@ -97,6 +99,12 @@ next.addEventListener('click', function (event) {
                     break;
                 }
             }
+            if (answerKey[counter] !== userScore.userAnsVal[counter]) {
+                initialSet.initialTime.timer -= 5;
+            }
+            counter++;
+
+            // console.log(initialSet.initialTime.timer);
             questionArray[questionNum]();//calls the element function of questionArray with questionNum as its index
             questionNum++;
         }
@@ -147,14 +155,15 @@ function renderScore() {
         }
     }
 }
-function isCorrect(){
-    for (let property in answerKey) {
-        if (answerKey[property] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
+function isCorrect() {
+    counter = 0;
+    for (var a = 0; a < answerKey.length; a++) {
+        if (answerKey[counter] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
             userScore.userAns[counter] += '✔️';//adds a check mark to the correct answer
             userScore.userCorrectAnsNum++;//updates the number of correct answers the user got right
         } else {
             userScore.userAns[counter] += '❌';//adds an x to the wrong answer
         }
-        counter++; //updates the counter for how many questions have been answered
+        counter++;//updates the counter for how many questions have been answered
     }
 }
