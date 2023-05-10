@@ -52,6 +52,7 @@ function initialize() {
 var initialSet = {
     //
     initialTime: {
+        timer: 120,
         timeInterval: null,
         startTime: function () {
             var timeInterval = setInterval(function () {
@@ -96,7 +97,7 @@ next.addEventListener('click', function (event) {
                     break;
                 }
             }
-            questionArray[questionNum]();
+            questionArray[questionNum]();//calls the element function of questionArray with questionNum as its index
             questionNum++;
         }
     }
@@ -122,7 +123,7 @@ function question4() {
 }
 function gameOver() {
 
-    
+    isCorrect();//calls the function to check which questions are correct or
     localStorage.setItem('userScore', JSON.stringify(userScore));//stores the userScore object to JSON Stringfy
     console.log(userScore);
     renderScore();
@@ -146,16 +147,13 @@ function renderScore() {
         }
     }
 }
-// subtract time from timer when user answers incorrect
 function isCorrect(){
     for (let property in answerKey) {
         if (answerKey[property] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
             userScore.userAns[counter] += '✔️';//adds a check mark to the correct answer
             userScore.userCorrectAnsNum++;//updates the number of correct answers the user got right
         } else {
-            userScore.userAns[counter] += '❌';//adds an x to the wrong answers
-
-            initialSet.initialTime.timer += 5; //WHEN QUESTION WRONG, 5S IS ADDED
+            userScore.userAns[counter] += '❌';//adds an x to the wrong answer
         }
         counter++; //updates the counter for how many questions have been answered
     }
