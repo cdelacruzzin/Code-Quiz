@@ -149,11 +149,13 @@ function gameOver() {
 
 }
 function renderScore() {
-    // Use JSON.parse() to convert text to JavaScript object
+ 
     //shows the score
-    var finalScore = JSON.parse(localStorage.getItem("userScore"));
+    var finalScore = JSON.parse(localStorage.getItem("userScore"));   // Use JSON.parse() to convert text to JavaScript object
     var liElem = document.querySelectorAll('li');
 
+
+    //hides the question form, and shows the results section
     document.querySelector('.content').setAttribute("style", "display: none");
     document.querySelector('section').setAttribute("style", "display: flex");
 
