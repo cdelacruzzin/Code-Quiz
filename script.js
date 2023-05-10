@@ -60,10 +60,10 @@ var initialSet = {
             var timeInterval = setInterval(function () {
                 initialSet.initialTime.timer--;
                 time.textContent = initialSet.initialTime.timer;
-                userScore.userTimeFinish = initialSet.initialTime.timer; //when interval gets stopped, the time will be stored in userTimeFinish object
                 if (initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
                     clearInterval(timeInterval);
                 }
+                userScore.userTimeFinish = initialSet.initialTime.timer; //when interval gets stopped, the time will be stored in userTimeFinish object
                 time.textContent = initialSet.initialTime.timer +1;
             }, 1000);
         },
@@ -99,10 +99,12 @@ next.addEventListener('click', function (event) {
                     break;
                 }
             }
-            if (answerKey[counter] !== userScore.userAnsVal[counter]) {
+            console.log(counter);
+            counter++;
+            if (answerKey[counter] !== userScore.userAnsVal[counter] && (counter < 4)) {
                 initialSet.initialTime.timer -= 5;
             }
-            counter++;
+            
             questionArray[questionNum]();//calls the element function of questionArray with questionNum as its index
             questionNum++;
         }
