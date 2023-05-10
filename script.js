@@ -159,8 +159,9 @@ function renderScore() {
     document.querySelector('.content').setAttribute("style", "display: none");
     document.querySelector('section').setAttribute("style", "display: flex");
 
+
     if (finalScore !== null) {
-        document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum;
+        document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum; //shows the number of correct answers the user got
         document.querySelector('.final-time').textContent = finalScore.userTimeFinish;
 
         for (var a = 0; a < 4; a++) {
