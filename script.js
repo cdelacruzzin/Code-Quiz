@@ -73,18 +73,14 @@ var initialSet = {
         document.getElementById('a_three').textContent,
     ]
 };
-
-
-
-
 next.addEventListener('click', function (event) {
     event.preventDefault();
     //checks if any of the buttons is checked. nothing happends if nothing is checked. if checked, 
     //the corresponding function will be called.
     //will show next question if button is checked, otherwise nothing will happen
     //the for loop determines which button was checked, and stores it into 'answer' variable
-    //after all questions answered, function to savwe answers will be called
-    //once all questions answered, 'next' button will stop working
+    //after all questions answered, function to save answers will be called
+    //once all questions answered, the gameOver function will be called
     if ((radios[0].checked == false && radios[1].checked == false && radios[2].checked == false && radios[3].checked == false)) {
     } else {
         if (questionNum < questionArray.length) {
@@ -105,7 +101,6 @@ next.addEventListener('click', function (event) {
         }
     }
 });
-
 //when functions are called, the labels' text content will change to questions for the corresponding question
 function question2() {
     labels[0].textContent = "a";
@@ -125,40 +120,22 @@ function question4() {
     labels[2].textContent = "g";
     labels[3].textContent = "d";
 }
-
-
-
-
-
 function gameOver() {
 
-    for (let property in answerKey) {
-        if (answerKey[property] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
-            userScore.userAns[counter] += '✔️';//adds a check mark to the correct answer
-            userScore.userCorrectAnsNum++;//updates the number of correct answers the user got right
-        } else {
-            userScore.userAns[counter] += '❌';//adds an x to the wrong answers
-
-            initialSet.initialTime.timer += 5; //WHEN QUESTION WRONG, 5S IS ADDED
-        }
-        counter++; //updates the counter for how many questions have been answered
-    }
+    
     localStorage.setItem('userScore', JSON.stringify(userScore));//stores the userScore object to JSON Stringfy
     console.log(userScore);
     renderScore();
 
 }
 function renderScore() {
- 
     //shows the score
     var finalScore = JSON.parse(localStorage.getItem("userScore"));   // Use JSON.parse() to convert text to JavaScript object
     var liElem = document.querySelectorAll('li');
 
-
     //hides the question form, and shows the results section
     document.querySelector('.content').setAttribute("style", "display: none");
     document.querySelector('section').setAttribute("style", "display: flex");
-
 
     if (finalScore !== null) {
         document.querySelector('.correctAns').textContent = finalScore.userCorrectAnsNum; //shows the number of correct answers the user got
@@ -170,3 +147,16 @@ function renderScore() {
     }
 }
 // subtract time from timer when user answers incorrect
+function isCorrect(){
+    for (let property in answerKey) {
+        if (answerKey[property] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
+            userScore.userAns[counter] += '✔️';//adds a check mark to the correct answer
+            userScore.userCorrectAnsNum++;//updates the number of correct answers the user got right
+        } else {
+            userScore.userAns[counter] += '❌';//adds an x to the wrong answers
+
+            initialSet.initialTime.timer += 5; //WHEN QUESTION WRONG, 5S IS ADDED
+        }
+        counter++; //updates the counter for how many questions have been answered
+    }
+}
