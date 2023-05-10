@@ -18,6 +18,13 @@ var answerKey = {
     ans3: 3,
     ans4: 1
 };
+//an object to store user's data
+var userScore = {
+    userCorrectAnsNum: 0,
+    userTimeFinish: 0,
+    userAnsVal: [],
+    userAns: []
+};
 
 //when clicked, timer starts, displays the questions, and calls the function to initialize the variables
 start.addEventListener('click', function () {
@@ -118,16 +125,6 @@ function question4() {
     labels[2].textContent = "g";
     labels[3].textContent = "d";
 }
-
-
-var userScore = {
-    userCorrectAnsNum: 0,
-    userTimeFinish: 0,
-    userAnsVal: [],
-    userAns: []
-};
-
-
 //compares the user answer value array to the answerKey object
 //adds a check mark to the correct answer
 //adds an x to the wrong answers
