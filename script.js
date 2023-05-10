@@ -125,25 +125,25 @@ function question4() {
     labels[2].textContent = "g";
     labels[3].textContent = "d";
 }
-//compares the user answer value array to the answerKey object
-//adds a check mark to the correct answer
-//adds an x to the wrong answers
-//updates the number of correct answers the user got right
-//stores the userScore object to JSON Stringfy
+
+
+
+
+
 function gameOver() {
 
     for (let property in answerKey) {
-        if (answerKey[property] === userScore.userAnsVal[counter]) {
-            userScore.userAns[counter] += '✔️';
-            userScore.userCorrectAnsNum++;
+        if (answerKey[property] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
+            userScore.userAns[counter] += '✔️';//adds a check mark to the correct answer
+            userScore.userCorrectAnsNum++;//updates the number of correct answers the user got right
         } else {
-            userScore.userAns[counter] += '❌';
+            userScore.userAns[counter] += '❌';//adds an x to the wrong answers
 
             initialSet.initialTime.timer += 5; //WHEN QUESTION WRONG, 5S IS ADDED
         }
-        counter++;
+        counter++; //updates the counter for how many questions have been answered
     }
-    localStorage.setItem('userScore', JSON.stringify(userScore));
+    localStorage.setItem('userScore', JSON.stringify(userScore));//stores the userScore object to JSON Stringfy
     console.log(userScore);
     renderScore();
 
