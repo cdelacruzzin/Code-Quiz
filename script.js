@@ -69,12 +69,7 @@ var initialSet = {
         },
     },
     //there are the initial question on the html doc
-    initialQs: [
-        document.getElementById('a_zero').textContent,
-        document.getElementById('a_one').textContent,
-        document.getElementById('a_two').textContent,
-        document.getElementById('a_three').textContent,
-    ]
+    initialQs: [document.getElementById('a_zero').textContent, document.getElementById('a_one').textContent, document.getElementById('a_two').textContent, document.getElementById('a_three').textContent,]
 };
 next.addEventListener('click', function (event) {
     event.preventDefault();
@@ -156,8 +151,6 @@ function renderScore() {
     }
 }
 function isCorrect() {
-    
-
     counter = 0;
     for (var a = 0; a < answerKey.length; a++) {
         if (answerKey[counter] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
@@ -168,6 +161,4 @@ function isCorrect() {
         }
         counter++;//updates the counter for how many questions have been answered
     }
-
-
 }
