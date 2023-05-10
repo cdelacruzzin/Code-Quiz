@@ -64,7 +64,7 @@ var initialSet = {
                 if (initialSet.initialTime.timer === 0 || (userScore.userAns.length === 4)) {
                     clearInterval(timeInterval);
                 }
-                time.textContent = initialSet.initialTime.timer + 1;
+                time.textContent = initialSet.initialTime.timer +1;
             }, 1000);
         },
     },
@@ -103,8 +103,6 @@ next.addEventListener('click', function (event) {
                 initialSet.initialTime.timer -= 5;
             }
             counter++;
-
-            // console.log(initialSet.initialTime.timer);
             questionArray[questionNum]();//calls the element function of questionArray with questionNum as its index
             questionNum++;
         }
@@ -156,6 +154,8 @@ function renderScore() {
     }
 }
 function isCorrect() {
+    
+
     counter = 0;
     for (var a = 0; a < answerKey.length; a++) {
         if (answerKey[counter] === userScore.userAnsVal[counter]) {//compares the user answer value array to the answerKey object
@@ -166,4 +166,6 @@ function isCorrect() {
         }
         counter++;//updates the counter for how many questions have been answered
     }
+
+
 }
