@@ -21,6 +21,16 @@ var answerKey = {
 
 //when clicked, timer starts, displays the questions, and calls the question1 fuinction
 start.addEventListener('click', function () {
+    
+    initialize();
+
+    radioDisplay.setAttribute("style", "display: flex");
+    document.querySelector('.content').setAttribute("style", "display: block");
+    document.querySelector('section').setAttribute("style", "display: none");
+    console.log(userScore);
+});
+
+function initialize(){
     initialSet.initialTime.timer = 120;
     initialSet.initialTime.startTime();
     
@@ -30,27 +40,10 @@ start.addEventListener('click', function () {
     counter = 0;
     userScore.userCorrectAnsNum = 0;
 
-
-    radioDisplay.setAttribute("style", "display: flex");
-    document.querySelector('.content').setAttribute("style", "display: block");
-    document.querySelector('section').setAttribute("style", "display: none");
-
-
-
     for(var a = 0; a < initialSet.initialQs.length; a++){
         labels[a].textContent = initialSet.initialQs[a];
     }
-    
-    
-
-    console.log(userScore);
-    // console.log(initialSet.initialQs,length);
-    // console.log("starting time: ", initialSet.initialTime.timer);
-    // console.log('array len: ', userScore.userAns.length);
-    // console.log("counter: ", counter);
-    // console.log("questionNum: ", questionNum);
-});
-
+}
 
 
     next.addEventListener('click', function (event) {
@@ -79,16 +72,11 @@ start.addEventListener('click', function () {
                     }
                 }
                 questionArray[questionNum]();
-                questionNum++;
+                questionNum++; 
             }
         }
 
     });
-
-
-
-
-//when function is called, questions and answers change
 
 function question2() {
     labels[0].textContent = "a";
@@ -131,9 +119,9 @@ function gameOver() {
             userScore.userCorrectAnsNum++;
         } else {
             userScore.userAns[counter] += '❌';
-
+    
+            initialSet.initialTime.timer += 5; //WHEN QUESTION WRONG, 5S IS ADDED
         }
-        
         counter++;
     }
     localStorage.setItem('userScore', JSON.stringify(userScore));
@@ -161,7 +149,6 @@ function renderScore() {
         for (var a = 0; a < 4; a++) {
             liElem[a].textContent = finalScore.userAns[a];
         }
-
     }
 }
 
@@ -192,7 +179,4 @@ var initialSet = {
 };
 
 console.log(initialSet.initialQs[2])
-//fix timer!! there is a 1 second delay
-//start button needs to run again
-//when start button is clicked more than once, the timer stops working
 // subtract time from timer when user answers incorrect
