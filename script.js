@@ -2,6 +2,7 @@ var start = document.querySelector('.start');
 var time = document.querySelector('#timer');
 var radioDisplay = document.querySelector('.input-box');
 var next = document.querySelector('#next');
+var Q = document.querySelector(".question");
 var radios = document.querySelectorAll('input');
 var labels = document.querySelectorAll('label');
 var form = document.querySelectorAll('.content');
@@ -107,22 +108,25 @@ next.addEventListener('click', function (event) {
 });
 //when functions are called, the labels' text content will change to questions for the corresponding question
 function question2() {
-    labels[0].textContent = "a";
-    labels[1].textContent = "s";
-    labels[2].textContent = "d";
-    labels[3].textContent = "f";
+    Q.textContent = "Which of the following is NOT a loop statement in JavaScript?";
+    labels[0].textContent = "for";
+    labels[1].textContent = "if-else";
+    labels[2].textContent = "while";
+    labels[3].textContent = "do-while";
 }
 function question3() {
-    labels[0].textContent = "q";
-    labels[1].textContent = "w";
-    labels[2].textContent = "e";
-    labels[3].textContent = "r";
+    Q.textContent = 'What is the purpose of the "typeof" operator in JavaScript? ';
+    labels[0].textContent = "To assign a new value to a variable";
+    labels[1].textContent = " To convert a variable to a different type";
+    labels[2].textContent = " To check the type of a variable";
+    labels[3].textContent = "To check if a variable is undefined";
 }
 function question4() {
-    labels[0].textContent = "3";
-    labels[1].textContent = "f";
-    labels[2].textContent = "g";
-    labels[3].textContent = "d";
+    Q.textContent = "What type of language is JavaScript? ";
+    labels[0].textContent = " Programming language";
+    labels[1].textContent = "Query language";
+    labels[2].textContent = "Database language";
+    labels[3].textContent = "Markup language";
 }
 function gameOver() {
 
