@@ -6,6 +6,11 @@ This webpage is a code quiz page. It asks the user a series of questions regardi
 ## Usage
 click the start button to start the quiz. Read the question in bolded characters, and select your answer on the radio buttons. Press 'next' to proceed to the next question. Once all questions have been answered, Your score will be displayed.
 
+Link to webpage: https://cdelacruzzin.github.io/Code-Quiz/
+
+Preview image:
+![preview:](./assets/Capture.PNG);
+
 ## Credits
 N/A
 
