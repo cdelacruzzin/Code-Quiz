@@ -13,14 +13,8 @@ var questionNum = 0;
 var questionArray = [question2, question3, question4, gameOver];
 var counter = 0;
 
-var answerKey = {
-    ans1: 4,
-    ans2: 2,
-    ans3: 3,
-    ans4: 1
-};
-
 var answerKey = [4, 2, 3, 1];
+
 //an object to store user's data
 var userScore = {
     userCorrectAnsNum: 0,
@@ -36,7 +30,6 @@ start.addEventListener('click', function () {
     radioDisplay.setAttribute("style", "display: flex");
     document.querySelector('.content').setAttribute("style", "display: block");
     document.querySelector('section').setAttribute("style", "display: none");
-    console.log(userScore);
 });
 
 function initialize() {
@@ -65,7 +58,7 @@ var initialSet = {
                     clearInterval(timeInterval);
                 }
                 userScore.userTimeFinish = initialSet.initialTime.timer; //when interval gets stopped, the time will be stored in userTimeFinish object
-                time.textContent = initialSet.initialTime.timer +1;
+                time.textContent = initialSet.initialTime.timer + 1;
             }, 1000);
         },
     },
@@ -92,18 +85,22 @@ next.addEventListener('click', function (event) {
 
                     userScore.userAns.push("Q" + (questionNum + 1) + ": " + selectedQ);
                     userScore.userAnsVal.push(answer);
+                    if ((answerKey[counter] !== userScore.userAnsVal[counter]) && (counter < 4)) {  //ifanswer is wrong, time is decreased
+                        initialSet.initialTime.timer -= 25;
+                        console.log('ki');
+                    }
                     break;
                 }
             }
-            console.log(counter);
+
             counter++;
-            if (answerKey[counter] !== userScore.userAnsVal[counter] && (counter < 4)) {
-                initialSet.initialTime.timer -= 5;
-            }
-            
+
+
             questionArray[questionNum]();//calls the element function of questionArray with questionNum as its index
             questionNum++;
+
         }
+
     }
 });
 //when functions are called, the labels' text content will change to questions for the corresponding question
